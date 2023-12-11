@@ -5,17 +5,12 @@ on: ['pull_request', 'push']
 jobs:
   unit-test:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Using Node 20
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20.x
       - name: install and unit test 🚧
         run: 
           yarn add
@@ -32,5 +27,5 @@ jobs:
         with:
           browser: chrome
           build: npm run build
-          start: npm start
+          start: npm run dev
       
